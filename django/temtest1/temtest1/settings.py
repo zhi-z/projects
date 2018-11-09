@@ -25,7 +25,7 @@ SECRET_KEY = 'a9b5)u)9@(!5n#h)dzn922fg)+%%+u=k*(6ruur(xo*$jdtg-)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app01',
     'rest_framework',
     'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'app01.middleware.MD1',
 ]
 
 ROOT_URLCONF = 'temtest1.urls'
@@ -121,3 +123,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 20
+# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
+
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+#     'PAGE_SIZE': 20
+# }

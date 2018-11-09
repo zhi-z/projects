@@ -18,9 +18,10 @@ from django.urls import path
 from django.conf.urls import url
 from app01 import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/',views.index),
-    url(r'^appupdate/api/$', views.DeviceAppUpdateModelView.as_view({"get":"list"}),name="appupdate"),
+    url(r'^appupdate/api/$', views.DeviceAppUpdateModelView.as_view({"get":"list","post":"create"}),name="appupdate"),
     url(r'^appupdate/api/(?P<pk>\d+)/$', views.DeviceAppUpdateModelView.as_view({"get":"retrieve"}),name="detailappupdate"),
 ]

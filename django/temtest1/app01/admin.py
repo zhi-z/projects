@@ -1,5 +1,7 @@
 from django.contrib import admin
 from app01.models import Customer,Apps,DeviceAppUpdate
+import requests
+
 
 class CustomerAdmin(admin.ModelAdmin):
 	list_display = ['name','updated']
@@ -24,6 +26,20 @@ class DeviceAppUpdateAdmin(admin.ModelAdmin):
 		for update_obj in queryset:
 			update_obj.isUpdated = False
 			update_obj.save()
+
+	def save_model(self, request, obj, form, change):
+		print('-'*100)
+		print('save mode.......')
+		print('path:  ',request.path)
+		# print('form:  ',form)
+		print('change:  ',change)
+		print('method:  ',request.method)
+		# print('obj:  ',obj)
+		print('-'*100)
+		"""
+		Given a model instance save it to the database.
+		"""
+		obj.save()
 
 	is_update.short_description = "标记为更新"
 	not_update.short_description = "标记为不更新"
