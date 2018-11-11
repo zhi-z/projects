@@ -10,3 +10,5 @@ class DeviceAppUpdateSerializers(serializers.ModelSerializer):
           model=DeviceAppUpdate
           fields="__all__"
           # depth=1
+
+ 

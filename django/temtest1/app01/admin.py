@@ -1,10 +1,11 @@
 from django.contrib import admin
 from app01.models import Customer,Apps,DeviceAppUpdate
 import requests
+import json
 
 
 class CustomerAdmin(admin.ModelAdmin):
-	list_display = ['name','updated']
+	list_display = ['id','name','updated']
 
 
 
@@ -28,12 +29,20 @@ class DeviceAppUpdateAdmin(admin.ModelAdmin):
 			update_obj.save()
 
 	def save_model(self, request, obj, form, change):
+		url = 'http://192.168.0.85:8001/appupdate/api/'
 		print('-'*100)
 		print('save mode.......')
-		print('path:  ',request.path)
+		# print('path:  ',request.path)
 		# print('form:  ',form)
-		print('change:  ',change)
-		print('method:  ',request.method)
+		# print('change:  ',change)
+		# print('method:  ',request.method)
+		# print('POST:  ',request.POST)
+		jdata = json.dumps(request.POST)
+		headers = {'content-type': 'application/json'}
+		print(jdata)
+		r = requests.post(url,data = jdata,headers=headers)
+		print('Response:  ',r.json)
+
 		# print('obj:  ',obj)
 		print('-'*100)
 		"""
